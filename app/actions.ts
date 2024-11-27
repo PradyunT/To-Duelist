@@ -130,6 +130,10 @@ export const fetchTasksAction = async () => {
     }
 
     const {data: fetchedTasks, error} = await supabase.from("tasks").select().eq("user_id", user.id);
+    if (error) {
+        console.error(error.code + " " + error.message);
+        throw new Error(error.code + " " + error.message);
+    }
     return fetchedTasks;
 }
 
@@ -193,9 +197,8 @@ export const fetchUsersAndTasksAction = async () => {
 
     let usersAndTasks = [];
     for (const user of users) {
-        const {data: tasks, error} = await supabase.from("tasks").select().eq("user_id", user.id);
+        const {data: tasks, error} = await supabase.from("tasks").select().eq("user_id", !user.auth_id);
 
-        console.log(tasks);
         if (error) {
             console.error(error.code + " " + error.message);
             throw new Error(error.code + " " + error.message);

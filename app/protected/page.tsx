@@ -7,7 +7,7 @@ import {PlusIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import Task from "@/components/task";
 import {useState, useEffect} from "react";
-import {TaskType} from "@/types";
+import {Task as TaskType} from "@/types";
 
 export default function HomePage() {
     const [tasks, setTasks] = useState<TaskType[]>([]);

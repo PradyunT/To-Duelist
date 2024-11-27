@@ -79,7 +79,7 @@ export default function HomePage() {
                     <p className="text-gray-300">{numCompleted}🔥</p>
                 </div>
 
-                <div className="my-10 flex flex-col gap-2">
+                <div className="my-10 flex flex-col gap-2 w-full ">
                     {tasks.length === 0 ? <p>Your tasks will be displayed here</p> : tasks.map((task) => <Task
                         key={task.id} task={task} onToggleCheck={handleToggleCheck} onDeleteTask={handleDeleteTask}/>)}
                 </div>

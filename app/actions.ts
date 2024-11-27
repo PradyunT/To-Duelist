@@ -197,7 +197,7 @@ export const fetchUsersAndTasksAction = async () => {
 
     let usersAndTasks = [];
     for (const user of users) {
-        const {data: tasks, error} = await supabase.from("tasks").select().eq("user_id", !user.auth_id);
+        const {data: tasks, error} = await supabase.from("tasks").select().eq("user_id", user.auth_id);
 
         if (error) {
             console.error(error.code + " " + error.message);

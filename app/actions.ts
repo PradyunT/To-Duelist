@@ -197,6 +197,11 @@ export const fetchUsersAndTasksAction = async () => {
 
     let usersAndTasks = [];
     for (const user of users) {
+        if (!user.auth_id) {
+            console.warn(`User ${user.id} has a null auth_id and will be skipped.`);
+            continue; // Skip users with null auth_id
+        }
+
         const {data: tasks, error} = await supabase.from("tasks").select().eq("user_id", user.auth_id);
 
         if (error) {
